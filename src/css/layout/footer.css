@@ -1,0 +1,45 @@
+.de-footer {
+    display: flex;
+    background: #FFFFFF;
+    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 425px;
+    height: 80px;
+    padding: 0 17px;
+    gap: 17px;
+    align-items: center;
+}
+
+.de-footer__input {
+    flex-grow: 1;
+}
+
+.de-footer__input:focus-visible, .de-footer__input input:focus-visible {
+    outline: none;
+}
+
+.de-footer__input input {
+    width: 100%;
+    font-style: italic;
+    height: 30px;
+    border: inherit;
+}
+
+.de-footer__input input::placeholder {
+    color: #000000;
+}
+
+.de-footer__button {
+    height: 26px;
+    width: 26px;
+    border: inherit;
+    background: inherit;
+    padding: 0;
+}
+
+.de-footer__button img {
+    height: 100%;
+    width: 100%;
+}

@@ -1,0 +1,30 @@
+.de-message {
+    width: 100%;
+    padding: 12px 9px 12px 9px;
+    min-height: 40px;
+    color: black;
+    background: white;
+}
+
+.de-message:last-child {
+    margin-bottom: 84px;
+}
+
+.de-message--status {
+    background: #DCDCDC;
+}
+
+.de-message--private_message {
+    background: #FFDEDE;
+}
+
+.de-message__time {
+    color: #AAAAAA;
+    margin-right: 7px;
+}
+
+.de-message__name {
+    margin-right: 7px;
+}
+
+.de-message__message {}
