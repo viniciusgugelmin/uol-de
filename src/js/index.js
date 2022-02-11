@@ -166,4 +166,11 @@ setInterval(() => {
     keepLogged();
 }, 5000);
 
+document.addEventListener('keyup', function (event) {
+    if (event.keyCode !== 13) return;
+
+    event.preventDefault();
+    sendMessage();
+});
+
 
