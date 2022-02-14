@@ -64,7 +64,29 @@ function goToSignup() {
 
 function getParticipants() {
     axios.get(`https://mock-api.driven.com.br/api/v4/uol/participants`)
-        .then(participants)
+        .then((response) => {
+            let conctacts = document.querySelector('#contacts');
+            let oldParticipants = participants;
+            participants = [];
+            participants.push({name: 'Todos'}, ...response.data);
+
+            if (participants.findIndex(participant => participant.name === to) === -1) to = 'Todos';
+
+            if (oldParticipants === participants) return;
+
+            conctacts.innerHTML = '';
+
+            participants.map((participant) => {
+                if (participant.name === nameParam) return;
+
+                conctacts.innerHTML += `
+                    <p onclick="changeMessageTo(this)" class="de-contacts__item ${to === participant.name ? 'de-contacts__item--selected' : ''}">
+                        <img src="./assets/${participant === 'Todos' ? 'users' : 'user'}.jpg" alt="${participant.name.toLowerCase()}">
+                        <span>${participant.name}</span>
+                        <img src="./assets/check.jpg" alt="check">
+                    </p>`;
+            });
+        })
 }
 
 async function getMessages() {
@@ -106,12 +128,14 @@ async function getMessages() {
             new AppError('getMessages', error.message, error.response.status);
         });
 
-    await getParticipants();
+    //await getParticipants();
 
     isGettingMessages = false;
 }
 
 function createCard(card) {
+    if (card.type === 'private_message' && card.to !== nameParam && card.from !== nameParam && card.to !== 'Todos') return;
+
     let nameHtml = `<strong>${card.from}</strong> `;
     let classCard = `de-message de-message--${card.type}`;
 
@@ -156,6 +180,41 @@ function getIfIsLastSavedMessage(message, newLastMessage) {
         message.to === newLastMessage.to &&
         message.from === newLastMessage.from &&
         message.type === newLastMessage.type;
+}
+
+function changeVisibility(item, value) {
+    [...item.parentElement.children].forEach(children => {
+        children.classList.remove('de-visibilities__item--selected');
+    });
+
+    item.classList.add('de-visibilities__item--selected');
+
+    type = value;
+}
+
+function changeMessageTo(item) {
+    [...item.parentElement.children].forEach(children => {
+        children.classList.remove('de-contacts__item--selected');
+    });
+
+    item.classList.add('de-contacts__item--selected');
+
+    to = item.children[1].innerText;
+}
+
+function closeOverlay(el) {
+    el.classList.add('de-overlay--hide');
+
+    let asideMenu = document.querySelector('#aside-menu');
+    asideMenu.classList.add('de-aside--hide');
+}
+
+function openAsideMenu() {
+    let overlay = document.querySelector('#overlay');
+    overlay.classList.remove('de-overlay--hide');
+
+    let asideMenu = document.querySelector('#aside-menu');
+    asideMenu.classList.remove('de-aside--hide');
 }
 
 setInterval(() => {

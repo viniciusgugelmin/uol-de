@@ -16,7 +16,7 @@
 <body class="de-body">
 <header class="de-header">
     <img class="de-header__logo" src="./assets/logo.jpg" alt="Logo UOL">
-    <img src="./assets/users.png" alt="Usuários">
+    <img onclick="openAsideMenu()" src="./assets/users.png" alt="Usuários">
 </header>
 <main id="chat" class="de-main"></main>
 <footer class="de-footer">
@@ -27,6 +27,32 @@
         <img src="assets/send-message.png" alt="Enviar">
     </button>
 </footer>
+
+<!-- Aside -->
+<div id="overlay" class="de-overlay de-overlay--hide" onclick="closeOverlay(this)"></div>
+<aside id="aside-menu" class="de-aside de-aside--hide">
+    <p class="de-aside__title">Escolha um contato para enviar mensagem</p>
+    <div id="contacts" class="de-contacts">
+        <p onclick="changeMessageTo(this)" class="de-contacts__item de-contacts__item--selected">
+            <img src="./assets/users.jpg" alt="todos">
+            <span>Todos</span>
+            <img src="./assets/check.jpg" alt="check">
+        </p>
+    </div>
+    <p class="de-aside__title">Escolha a visibilidade:</p>
+    <div class="de-visibilities">
+        <p onclick="changeVisibility(this, 'message')" class="de-visibilities__item de-visibilities__item--selected">
+            <img src="./assets/unlocked.jpg" alt="unlocked">
+            <span>Público</span>
+            <img src="./assets/check.jpg" alt="check">
+        </p>
+        <p onclick="changeVisibility(this, 'private_message')" class="de-visibilities__item">
+            <img src="./assets/locked.jpg" alt="locked">
+            <span>Reservadamente</span>
+            <img src="./assets/check.jpg" alt="check">
+        </p>
+    </div>
+</aside>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="src/js/index.js"></script>
 </body>

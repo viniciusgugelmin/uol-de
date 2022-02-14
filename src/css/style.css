@@ -6,6 +6,8 @@
 @import 'layout/header.css';
 @import 'layout/main.css';
 @import 'layout/footer.css';
+@import 'layout/overlay.css';
 /* components */
+@import 'components/aside.css';
 @import 'components/button.css';
 @import 'components/message.css';

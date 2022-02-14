@@ -4,6 +4,7 @@
     min-height: 40px;
     color: black;
     background: white;
+    word-break: break-all;
 }
 
 .de-message:last-child {
